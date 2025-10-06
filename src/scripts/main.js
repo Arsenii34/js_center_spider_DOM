@@ -6,7 +6,19 @@ wall.style.position = 'relative';
 
 const spider = document.querySelector('.spider');
 
-spider.style.position = 'absolute';
-spider.style.top = '50%';
-spider.style.left = '50%';
-spider.style.transform = 'translate(-50%, -50%)';
+if (spider.complete) {
+  centerSpider();
+} else {
+  spider.onload = () => {
+    centerSpider();
+  };
+}
+
+function centerSpider() {
+  const left = (wall.offsetWidth - spider.offsetWidth) / 2;
+  const topOffset = (wall.offsetHeight - spider.offsetHeight) / 2;
+
+  spider.style.position = 'absolute';
+  spider.style.top = `${topOffset}px`;
+  spider.style.left = `${left}px`;
+}
